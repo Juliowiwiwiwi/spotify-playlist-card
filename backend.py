@@ -8,14 +8,12 @@ import html
 # Load environment variables
 load_dotenv()
 
-app = Flask(__name__)
 CORS(app, resources={
-    r"/*": {
+    r"/playlists": {
         "origins": [
-            "http://localhost:3000",          # For local dev
-            "https://friendly-smakager-6bcecc.netlify.app/"    # Your Netlify URL
-        ],
-        "methods": ["GET"]
+            "http://localhost:3000",
+            "https://friendly-smakager-6bcecc.netlify.app"
+        ]
     }
 })
 # Spotify API credentials
