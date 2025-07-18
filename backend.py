@@ -11,7 +11,7 @@ load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={
     r"/playlists": {
-        "origins": ["http://localhost:3000"],
+        "origins": ["http://localhost:3000",https://friendly-smakager-6bcecc.netlify.app],
         "methods": ["GET"]
     }
 })
