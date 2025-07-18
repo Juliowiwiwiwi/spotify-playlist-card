@@ -10,12 +10,14 @@ load_dotenv()
 
 app = Flask(__name__)
 CORS(app, resources={
-    r"/playlists": {
-        "origins": ["http://localhost:3000",https://friendly-smakager-6bcecc.netlify.app],
+    r"/*": {
+        "origins": [
+            "http://localhost:3000",          # For local dev
+            "https://friendly-smakager-6bcecc.netlify.app/"    # Your Netlify URL
+        ],
         "methods": ["GET"]
     }
 })
-
 # Spotify API credentials
 SPOTIFY_CLIENT_ID = os.getenv("SPOTIFY_CLIENT_ID")
 SPOTIFY_CLIENT_SECRET = os.getenv("SPOTIFY_CLIENT_SECRET")
