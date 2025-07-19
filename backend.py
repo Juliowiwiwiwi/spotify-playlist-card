@@ -13,7 +13,7 @@ CORS(app, resources={
         "origins": [
             "http://localhost:3000",
             "https://friendly-smakager-6bcecc.netlify.app"
-        ]
+        ], "methods": ["GET", "OPTIONS"]  # Add OPTIONS for preflight
     }
 })
 # Spotify API credentials
