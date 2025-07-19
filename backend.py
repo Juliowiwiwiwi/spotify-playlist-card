@@ -9,11 +9,11 @@ import html
 load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={
-    r"/playlists": {
+    r"/playlists*": {  # This will match /playlists and /playlists/<id>/tracks
         "origins": [
             "http://localhost:3000",
             "https://friendly-smakager-6bcecc.netlify.app"
-        ], "methods": ["GET", "OPTIONS"]  # Add OPTIONS for preflight
+        ], "methods": ["GET", "OPTIONS"]
     }
 })
 # Spotify API credentials
