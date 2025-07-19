@@ -13,15 +13,14 @@ body {
     color: #ffffff;
     min-height: 100vh;
     box-sizing: border-box;
-    /* No max-width and margin: auto here, as requested, to keep full width (minus padding) */
 }
 
 /* Header Styles */
 .tracks-header {
     display: flex;
-    flex-direction: column; /* Changed to column to stack items */
+    flex-direction: column; /* Stack button and title vertically */
     align-items: flex-start; /* Align items to the left */
-    /* Removed gap from here as elements are stacked */
+    gap: 0.5rem; /* Gap between stacked items */
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #282828;
@@ -43,14 +42,14 @@ body {
     background: none;
     border: none;
     color: #1DB954; /* Green color as requested */
-    font-size: 1.25rem; /* Smaller size as requested */
+    font-size: 1.25rem; /* Smaller size for desktop button text */
     cursor: pointer;
-    padding: 0.5rem; /* Remove padding to make it smaller */
-    border-radius: 50%; /* Remove border-radius to ensure no roundness if text is primary */
+    padding: 0.5rem; /* Add padding for a clickable area on desktop */
+    border-radius: 50%; /* Make it round if desired on desktop */
     transition: all 0.2s ease;
     display: flex; /* Use flex for icon and text alignment */
     align-items: center;
-    gap: 0.5rem; /* Space between icon and "Back to Playlists" text */
+    gap: 0.3rem; /* Very small gap between icon and text for compact look */
     flex-shrink: 0;
     text-decoration: none; /* Ensure no underline */
 }
@@ -61,11 +60,7 @@ body {
     transform: none; /* Remove transform on hover if you want it stationary */
 }
 
-/* REMOVED: .back-to-playlists and its button styles as it's not used in your JS for the main back button */
-/* REMOVED: .playlist-tracks-heading (h2) as you only want one heading */
-
-
-/* Loading State (Keep as is) */
+/* Loading State */
 .loading-state {
     display: flex;
     flex-direction: column;
@@ -102,7 +97,7 @@ body {
     border-radius: 4px;
 }
 
-/* Error State (Keep as is) */
+/* Error State */
 .error-state {
     max-width: 600px;
     margin: 3rem auto;
@@ -152,7 +147,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Tracks List (Keep as is, since you like this format) */
+/* Tracks List */
 .tracks-list {
     display: grid;
     grid-template-columns: 1fr;
@@ -166,7 +161,7 @@ body {
     background: #181818;
     border-radius: 6px;
     transition: all 0.3s ease;
-    align-items: center;
+    align-items: center; /* Vertically align image, text, audio */
 }
 
 .track-card:hover {
@@ -176,14 +171,14 @@ body {
 
 .track-media {
     position: relative;
-    flex-shrink: 0; /* Important: Prevent shrinking */
+    flex-shrink: 0;
     width: 80px; /* Fixed size on desktop */
     height: 80px; /* Fixed size on desktop */
 }
 
 .track-image {
-    width: 80px;
-    height: 80px;
+    width: 80px; /* Fixed size on desktop */
+    height: 80px; /* Fixed size on desktop */
     object-fit: cover;
     border-radius: 4px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
@@ -195,14 +190,14 @@ body {
     border-radius: 4px;
     background: #2a2a2a;
     display: block;
-    flex-shrink: 0; /* Important: Prevent shrinking */
+    flex-shrink: 0;
     margin-left: auto; /* Push to the right */
     filter: invert(0.8) sepia(1) saturate(5) hue-rotate(100deg);
 }
 
 .track-info {
     flex-grow: 1; /* Allow it to take up available space */
-    min-width: 0; /* Crucial for preventing overflow in flex items with text-overflow */
+    min-width: 0; /* CRITICAL: Allows text to truncate */
 }
 
 .track-title {
@@ -223,68 +218,113 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Responsive Design (Focus on these changes) */
+/* Responsive Design */
 @media (max-width: 768px) {
     .tracks-view {
-        padding: 1rem;
+        padding: 1rem !important; /* Ensure smaller padding on mobile */
+        max-width: none !important; /* Force no max-width on mobile */
+        margin: 0 !important; /* Force no auto margin on mobile (to prevent centering) */
     }
 
+    /* Header elements for mobile */
     .tracks-header {
-        flex-direction: column; /* Keep stacked for mobile */
-        align-items: flex-start; /* Align to left */
-        gap: 0.5rem; /* Reduce gap slightly */
+        display: flex !important; /* Force flex */
+        flex-direction: column !important; /* Force stacked for mobile */
+        align-items: flex-start !important; /* Force align to left */
+        gap: 0.3rem !important; /* Force small gap */
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+        margin-bottom: 1rem !important;
+        border-bottom: 1px solid #282828 !important;
+        width: 100% !important; /* Ensure it takes full width */
     }
 
     .playlist-title {
-        font-size: 1.5rem; /* Smaller title on mobile */
-        margin-top: 0.2rem; /* Small margin from button */
-        margin-left: 0;
-        text-align: left;
+        font-size: 1.5rem !important; /* Force smaller title on mobile */
+        margin: 0 !important;
+        margin-top: 0.2rem !important; /* Force small top margin */
+        text-align: left !important;
     }
 
     .navigation-button {
-        font-size: 0.9rem; /* Smaller button font size */
-        padding: 0; /* Remove padding for smaller visual size */
+        font-size: 0.9rem !important; /* Force smaller button font size for mobile */
+        padding: 0 !important; /* Force no padding for a compact link */
+        color: #1DB954 !important; /* Force green color */
+        display: flex !important; /* Ensure flex for icon+text */
+        align-items: center !important; /* Align vertically */
+        gap: 0.3rem !important; /* Force small gap */
+        background: none !important; /* Force no background */
+        border: none !important; /* Force no border */
+        border-radius: 0 !important; /* Force no border-radius */
     }
+    .navigation-button:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important; /* Force hover background */
+        color: #1ed760 !important; /* Force hover color */
+        transform: none !important; /* Force no transform */
+    }
+
 
     /* Track Card Specifics for Mobile */
     .track-card {
-        flex-direction: row; /* Keep horizontal layout */
-        flex-wrap: nowrap; /* Prevent wrapping */
-        justify-content: flex-start; /* Align contents to the left */
-        align-items: center; /* Vertically align items in the row */
-        text-align: left;
-        padding: 0.75rem; /* Slightly less padding */
+        display: flex !important; /* Force flex */
+        flex-direction: row !important; /* Force horizontal layout */
+        flex-wrap: nowrap !important; /* Force no wrapping */
+        justify-content: flex-start !important; /* Force align contents to the left */
+        align-items: center !important; /* Force vertically align items */
+        text-align: left !important;
+        padding: 0.5rem !important; /* Force REDUCED PADDING */
+        width: auto !important; /* Ensure it takes available space */
     }
 
     .track-media {
-        width: 60px; /* Smaller image size on mobile */
-        height: 60px;
+        width: 50px !important; /* FORCE SMALLER IMAGE SIZE */
+        height: 50px !important; /* FORCE SMALLER IMAGE SIZE */
+        flex-shrink: 0 !important; /* Force no shrinking */
+        flex-basis: 50px !important; /* Explicitly set flex basis to its size */
+    }
+
+    .track-image {
+        width: 100% !important; /* Ensure image fills its new smaller container */
+        height: 100% !important;
+        object-fit: cover !important;
+        border-radius: 4px !important;
     }
 
     .track-info {
-        flex-direction: column; /* Stack title/artist */
-        align-items: flex-start; /* Align to left */
-        /* IMPORTANT: ensure min-width: 0 is present here or on the main .track-info */
-        min-width: 0; /* Ensure this is effective on mobile too */
-        flex-grow: 1; /* Allow it to take available space */
+        display: flex !important; /* Force flex */
+        flex-direction: column !important; /* Force stacked title/artist */
+        align-items: flex-start !important; /* Force align to left */
+        flex-grow: 1 !important; /* Force to take available space */
+        min-width: 0 !important; /* CRITICAL: Force text truncation */
+        flex-basis: auto !important; /* Allow flex basis to be content-based */
+        padding-right: 0.5rem !important; /* Add some padding on the right to separate from audio */
     }
 
-    .track-title, .track-artist {
-        /* Ensure these are effective on mobile for truncation */
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .track-title {
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 0.95rem !important; /* Force slightly smaller for title */
+        line-height: 1.2 !important; /* Force tighter line height */
+    }
+    .track-artist {
+        font-size: 0.8rem !important; /* Force slightly smaller for artist */
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
     }
 
     .audio-preview {
-        width: 70px; /* Reduce audio player width for more text space */
-        margin-left: auto; /* Push to the right */
-        flex-shrink: 0; /* Don't let it shrink */
+        width: 55px !important; /* FORCE EVEN SMALLER AUDIO PLAYER WIDTH */
+        min-width: 55px !important; /* Ensure it doesn't shrink below this */
+        margin-left: auto !important; /* Force push to the right */
+        flex-shrink: 0 !important; /* Force no shrinking */
+        flex-basis: 55px !important; /* Explicitly set flex basis to its size */
+        margin-top: 0 !important; /* Ensure no top margin */
     }
 
     .action-buttons {
-        flex-direction: column;
+        flex-direction: column !important;
     }
 }
 
