@@ -15,10 +15,15 @@ const PlaylistTracks = () => {
     try {
       console.debug(`[${new Date().toISOString()}] Fetching tracks for playlist:`, playlistId);
       const startTime = performance.now();
-      
+      console.log(`Attempting to fetch: https://spotify-backend-w6y3.onrender.com/playlists/${playlistId}/tracks`);
       const response = await fetch(
         `https://spotify-backend-w6y3.onrender.com/playlists/${playlistId}/tracks`,
-        { signal }
+        { signal,
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+                  }
+         }
       );
 
       const fetchTime = performance.now() - startTime;

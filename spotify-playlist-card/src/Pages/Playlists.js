@@ -98,7 +98,7 @@ const Playlists = () => {
               onClick={(e) => {
                 // Only navigate if not clicking the Spotify button
                 if (!e.target.closest('.spotify-link')) {
-                  navigate(`/playlists/${playlist.id}`);
+                  navigate(`/playlists/${playlist.id}/`);
                 }
               }}
               style={{ cursor: 'pointer' }}
