@@ -43,10 +43,10 @@ body {
     background: none;
     border: none;
     color: #1DB954; /* Green color as requested */
-    font-size: 1rem; /* Smaller size as requested */
+    font-size: 1.25rem; /* Smaller size as requested */
     cursor: pointer;
-    padding: 0; /* Remove padding to make it smaller */
-    border-radius: 0; /* Remove border-radius to ensure no roundness if text is primary */
+    padding: 0.5rem; /* Remove padding to make it smaller */
+    border-radius: 50%; /* Remove border-radius to ensure no roundness if text is primary */
     transition: all 0.2s ease;
     display: flex; /* Use flex for icon and text alignment */
     align-items: center;
@@ -57,7 +57,7 @@ body {
 
 .navigation-button:hover {
     color: #1ed760; /* Lighter green on hover */
-    background-color: transparent; /* Ensure no background changes on hover */
+    background-color: rgba(255, 255, 255, 0.1); /* Adding background back for better visual feedback */
     transform: none; /* Remove transform on hover if you want it stationary */
 }
 
@@ -166,6 +166,7 @@ body {
     background: #181818;
     border-radius: 6px;
     transition: all 0.3s ease;
+    align-items: center;
 }
 
 .track-card:hover {
@@ -175,7 +176,9 @@ body {
 
 .track-media {
     position: relative;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Important: Prevent shrinking */
+    width: 80px; /* Fixed size on desktop */
+    height: 80px; /* Fixed size on desktop */
 }
 
 .track-image {
@@ -187,28 +190,28 @@ body {
 }
 
 .audio-preview {
-    width: 100%; /* Keep this for full width within its flex context */
-    margin-top: 0.5rem; /* Adjust as needed */
+    width: 150px; /* Fixed width on desktop */
+    margin-top: 0;
     border-radius: 4px;
     background: #2a2a2a;
     display: block;
-    flex-shrink: 0;
+    flex-shrink: 0; /* Important: Prevent shrinking */
     margin-left: auto; /* Push to the right */
-    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(100deg); /* Green tint */
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(100deg);
 }
 
 .track-info {
-    flex-grow: 1;
-    min-width: 0; /* Prevent text overflow */
+    flex-grow: 1; /* Allow it to take up available space */
+    min-width: 0; /* Crucial for preventing overflow in flex items with text-overflow */
 }
 
 .track-title {
     margin: 0 0 0.25rem;
     font-size: 1rem;
     font-weight: 600;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; /* Keep on one line */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add ellipsis */
 }
 
 .track-artist {
@@ -220,56 +223,64 @@ body {
     text-overflow: ellipsis;
 }
 
-/* Responsive Design */
+/* Responsive Design (Focus on these changes) */
 @media (max-width: 768px) {
     .tracks-view {
         padding: 1rem;
     }
 
     .tracks-header {
-        flex-direction: column; /* Stack button and title vertically on mobile */
+        flex-direction: column; /* Keep stacked for mobile */
         align-items: flex-start; /* Align to left */
+        gap: 0.5rem; /* Reduce gap slightly */
     }
 
     .playlist-title {
         font-size: 1.5rem; /* Smaller title on mobile */
-        margin-top: 0.5rem; /* Space below button */
-        margin-left: 0; /* Ensure no unwanted margin */
+        margin-top: 0.2rem; /* Small margin from button */
+        margin-left: 0;
         text-align: left;
     }
 
     .navigation-button {
-        font-size: 0.9rem; /* Even smaller font size for button text on mobile */
-        padding: 0; /* No padding */
+        font-size: 0.9rem; /* Smaller button font size */
+        padding: 0; /* Remove padding for smaller visual size */
     }
 
+    /* Track Card Specifics for Mobile */
     .track-card {
-        flex-direction: row; /* Keep horizontal layout on mobile */
-        flex-wrap: nowrap;
-        justify-content: flex-start;
+        flex-direction: row; /* Keep horizontal layout */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        justify-content: flex-start; /* Align contents to the left */
+        align-items: center; /* Vertically align items in the row */
         text-align: left;
-        padding: 0.75rem;
+        padding: 0.75rem; /* Slightly less padding */
     }
 
     .track-media {
-        width: 60px;
+        width: 60px; /* Smaller image size on mobile */
         height: 60px;
     }
 
     .track-info {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column; /* Stack title/artist */
+        align-items: flex-start; /* Align to left */
+        /* IMPORTANT: ensure min-width: 0 is present here or on the main .track-info */
+        min-width: 0; /* Ensure this is effective on mobile too */
+        flex-grow: 1; /* Allow it to take available space */
     }
 
-    .track-info h2, .track-info p {
+    .track-title, .track-artist {
+        /* Ensure these are effective on mobile for truncation */
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
     }
 
     .audio-preview {
-        width: 80px;
-        margin-left: auto;
+        width: 70px; /* Reduce audio player width for more text space */
+        margin-left: auto; /* Push to the right */
+        flex-shrink: 0; /* Don't let it shrink */
     }
 
     .action-buttons {
