@@ -8,11 +8,14 @@ function App() {
   return (
     <Router>
       <div className="app-container">
+        {/* COMMENTED OUT OR REMOVED THE GLOBAL NAVIGATION BAR */}
+        {/*
         <nav>
           <Link to="/" className="nav-link">Home</Link>
           <Link to="/playlists" className="nav-link">My Playlists</Link>
         </nav>
-        
+        */}
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/playlists" element={<Playlists />} />

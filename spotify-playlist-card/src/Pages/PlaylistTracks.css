@@ -1,317 +1,297 @@
-/* Main Container */
-.tracks-container {
-  padding: 40px;
-  background-color: #121212;
-  color: white;
-  min-height: 100vh;
-  font-family: 'Circular', sans-serif;
+/* Base Styles */
+body {
+    margin: 0;
+    font-family: 'Circular', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
 }
 
-/* Header */
-.tracks-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.tracks-container h2 {
-  color: #1DB954;
-  margin-bottom: 30px;
-  width: 100%;
-  font-size: 2rem;
-}
-
-/* Back Button */
-.back-button {
-  background: none;
-  border: none;
-  color: #1DB954;
-  font-size: 16px;
-  cursor: pointer;
-  padding: 10px 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-  margin-bottom: 20px;
-}
-
-.back-button:hover {
-  background-color: rgba(29, 185, 84, 0.1);
-  transform: translateX(-3px);
-}
-
-/* Tracks List */
-.tracks-list {
-  display: grid;
-  gap: 15px;
-}
-
-.track-item {
-  background: #181818;
-  padding: 15px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.track-item:hover {
-  background: #282828;
-  transform: translateY(-2px);
-}
-
-.track-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-grow: 1;
-}
-
-.track-image {
-  width: 60px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.track-info div h3 {
-  margin: 0 0 5px;
-  font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 300px;
-}
-
-.track-info div p {
-  color: #b3b3b3;
-  font-size: 0.9rem;
-  margin: 0;
-}
-
-.audio-player {
-  width: 200px;
-  height: 40px;
-  background: #2a2a2a;
-  border-radius: 20px;
-}
-
-/* Loading State */
-.loading {
-  color: white;
-  text-align: center;
-  padding: 50px;
-  font-size: 1.2rem;
-}
-
-.spinner {
-  border: 4px solid rgba(0,0,0,0.1);
-  border-radius: 50%;
-  border-top: 4px solid #1DB954;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Error State */
-.error {
-  text-align: center;
-  padding: 2rem;
-  color: #ff3333;
-}
-
-.error button {
-  margin-top: 1rem;
-  padding: 0.8rem 1.5rem;
-  background: #1DB954;
-  color: white;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.error button:hover {
-  background: #1ed760;
-  transform: scale(1.03);
-}
-
-/* Empty State */
-.no-tracks {
-  text-align: center;
-  padding: 40px;
-  color: #b3b3b3;
-  font-size: 18px;
-  grid-column: 1 / -1;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .tracks-container {
-    padding: 20px;
-  }
-  
-  .track-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-  }
-  
-  .audio-player {
-    width: 100%;
-    margin-top: 10px;
-  }
-  
-  .track-info div h3 {
-    max-width: 200px;
-  }
-}
-
-.track-actions {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.spotify-track-link {
-  color: #b3b3b3;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-}
-
-.spotify-track-link:hover {
-  color: #1DB954;
-  transform: scale(1.1);
-}
-
-.spotify-icon {
-  font-size: 24px;
-}
-
-/* Adjust audio player positioning */
-.audio-player {
-  width: 200px;
-  height: 40px;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 768px) {
-  .track-actions {
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 10px;
-  }
-  
-  .audio-player {
-    width: 60%;
-  }
-  
-  .spotify-icon {
-    font-size: 20px;
-  }
-}
-
-.error-actions {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.retry-button {
-  background: #1DB954;
-  color: white;
-}
-
-.track-details {
-  min-width: 0; /* Prevent text overflow */
-}
-
-.track-details h3 {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Loading States */
-.loading-state {
-  text-align: center;
-  padding: 2rem;
-}
-
-.spinner {
-  border: 3px solid rgba(0,0,0,0.1);
-  border-radius: 50%;
-  border-top-color: #1DB954;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin: 0 auto 1rem;
-}
-
-.debug-info {
-  font-family: monospace;
-  color: #666;
-  font-size: 0.9rem;
-}
-
-/* Error States */
-.error-state {
-  background: #fff8f8;
-  border: 1px solid #ffcccc;
-  padding: 2rem;
-  text-align: center;
-  border-radius: 8px;
-  max-width: 500px;
-  margin: 2rem auto;
-}
-
-.action-buttons {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-/* Track List */
+/* Main Container for Tracks View */
 .tracks-view {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
+    padding: 2rem;
+    background-color: #121212;
+    color: #ffffff;
+    min-height: 100vh;
+    box-sizing: border-box;
+    /* No max-width and margin: auto here, as requested, to keep full width (minus padding) */
+}
+
+/* Header Styles */
+.tracks-header {
+    display: flex;
+    flex-direction: column; /* Changed to column to stack items */
+    align-items: flex-start; /* Align items to the left */
+    /* Removed gap from here as elements are stacked */
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #282828;
+    padding-top: 1rem;
+}
+
+/* Heading (h1 with class playlist-title) */
+.playlist-title {
+    font-size: 2rem;
+    color: #1DB954; /* Green color as requested */
+    margin: 0; /* Remove default margins */
+    font-weight: 700;
+    text-align: left; /* Align text within its space to the left */
+    margin-top: 0.5rem; /* Space below the back button */
+}
+
+/* Back Button (button with class navigation-button) */
+.navigation-button {
+    background: none;
+    border: none;
+    color: #1DB954; /* Green color as requested */
+    font-size: 1rem; /* Smaller size as requested */
+    cursor: pointer;
+    padding: 0; /* Remove padding to make it smaller */
+    border-radius: 0; /* Remove border-radius to ensure no roundness if text is primary */
+    transition: all 0.2s ease;
+    display: flex; /* Use flex for icon and text alignment */
+    align-items: center;
+    gap: 0.5rem; /* Space between icon and "Back to Playlists" text */
+    flex-shrink: 0;
+    text-decoration: none; /* Ensure no underline */
+}
+
+.navigation-button:hover {
+    color: #1ed760; /* Lighter green on hover */
+    background-color: transparent; /* Ensure no background changes on hover */
+    transform: none; /* Remove transform on hover if you want it stationary */
+}
+
+/* REMOVED: .back-to-playlists and its button styles as it's not used in your JS for the main back button */
+/* REMOVED: .playlist-tracks-heading (h2) as you only want one heading */
+
+
+/* Loading State (Keep as is) */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    text-align: center;
+}
+.spinner {
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top: 4px solid #1DB954;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.5rem;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.loading-state p {
+    margin: 0.5rem 0;
+    color: #b3b3b3;
+}
+.debug-info {
+    font-size: 0.875rem;
+    color: #7a7a7a;
+    margin-top: 1rem;
+}
+.debug-info code {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+}
+
+/* Error State (Keep as is) */
+.error-state {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: #181818;
+    border-radius: 8px;
+    text-align: center;
+}
+.error-state h3 {
+    color: #ff4d4d;
+    margin-top: 0;
+}
+.error-state p {
+    color: #b3b3b3;
+    margin-bottom: 1.5rem;
+}
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+.retry-button, .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 500px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.retry-button {
+    background-color: #1DB954;
+    color: white;
+}
+.retry-button:hover {
+    background-color: #1ed760;
+    transform: scale(1.03);
+}
+.back-button {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid #535353;
+}
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Tracks List (Keep as is, since you like this format) */
+.tracks-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
 }
 
 .track-card {
-  display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  border-bottom: 1px solid #eee;
-  align-items: center;
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #181818;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.track-card:hover {
+    background: #282828;
+    transform: translateY(-2px);
 }
 
 .track-media {
-  position: relative;
-  flex-shrink: 0;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.track-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .audio-preview {
-  width: 100%;
-  margin-top: 0.5rem;
+    width: 100%; /* Keep this for full width within its flex context */
+    margin-top: 0.5rem; /* Adjust as needed */
+    border-radius: 4px;
+    background: #2a2a2a;
+    display: block;
+    flex-shrink: 0;
+    margin-left: auto; /* Push to the right */
+    filter: invert(0.8) sepia(1) saturate(5) hue-rotate(100deg); /* Green tint */
 }
 
-@keyframes spin {
-  to { transform: rotate(360deg); }
+.track-info {
+    flex-grow: 1;
+    min-width: 0; /* Prevent text overflow */
+}
+
+.track-title {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-artist {
+    margin: 0;
+    color: #b3b3b3;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .tracks-view {
+        padding: 1rem;
+    }
+
+    .tracks-header {
+        flex-direction: column; /* Stack button and title vertically on mobile */
+        align-items: flex-start; /* Align to left */
+    }
+
+    .playlist-title {
+        font-size: 1.5rem; /* Smaller title on mobile */
+        margin-top: 0.5rem; /* Space below button */
+        margin-left: 0; /* Ensure no unwanted margin */
+        text-align: left;
+    }
+
+    .navigation-button {
+        font-size: 0.9rem; /* Even smaller font size for button text on mobile */
+        padding: 0; /* No padding */
+    }
+
+    .track-card {
+        flex-direction: row; /* Keep horizontal layout on mobile */
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        text-align: left;
+        padding: 0.75rem;
+    }
+
+    .track-media {
+        width: 60px;
+        height: 60px;
+    }
+
+    .track-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .track-info h2, .track-info p {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .audio-preview {
+        width: 80px;
+        margin-left: auto;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Accessibility Focus States */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid #1DB954;
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    .spinner,
+    .track-card,
+    .retry-button,
+    .back-button,
+    .navigation-button {
+        transition: none !important;
+        animation: none !important;
+    }
 }

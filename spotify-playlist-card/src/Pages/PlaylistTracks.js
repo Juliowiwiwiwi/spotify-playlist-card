@@ -22,12 +22,12 @@ const PlaylistTracks = () => {
           headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
-                  }
-         }
+          }
+        }
       );
 
       const fetchTime = performance.now() - startTime;
-      
+
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         throw new Error(
@@ -67,7 +67,7 @@ const PlaylistTracks = () => {
           retryCount,
           timestamp: new Date().toISOString()
         });
-        
+
         setError({
           message: err.message.includes('Failed to fetch')
             ? `Connection failed (Attempt ${retryCount + 1}/3)`
@@ -84,7 +84,7 @@ const PlaylistTracks = () => {
 
   useEffect(() => {
     const controller = new AbortController();
-    
+
     fetchTracks(controller.signal);
 
     return () => controller.abort();
@@ -112,19 +112,19 @@ const PlaylistTracks = () => {
     <div className="error-state" role="alert">
       <h3>Couldn't load tracks</h3>
       <p>{error.message}</p>
-      
+
       <div className="action-buttons">
         {error.isRetryable && (
-          <button 
-            onClick={handleRetry} 
+          <button
+            onClick={handleRetry}
             className="retry-button"
             aria-label="Retry loading tracks"
           >
             <FaRedo /> Try Again
           </button>
         )}
-        <button 
-          onClick={() => navigate(-1)} 
+        <button
+          onClick={() => navigate(-1)}
           className="back-button"
         >
           <FaArrowLeft /> Back to Playlists
@@ -136,20 +136,22 @@ const PlaylistTracks = () => {
   return (
     <div className="tracks-view">
       <header className="tracks-header">
-        <button 
-          onClick={() => navigate(-1)} 
+        <button
+          onClick={() => navigate(-1)}
           className="navigation-button"
           aria-label="Return to playlist list"
         >
-          <FaArrowLeft />
+          <FaArrowLeft /> Back to Playlists
         </button>
-        <h1>Playlist Tracks</h1>
+        <h1 className="playlist-title">Playlist Tracks</h1> {/* This is the only heading */}
       </header>
+
+      {/* REMOVED: <h2 className="playlist-tracks-heading">All Tracks</h2> */}
 
       <div className="tracks-list" aria-live="polite">
         {tracks.map(({ track }, index) => (
-          <article 
-            key={`${track.id}-${index}`} 
+          <article
+            key={`${track.id}-${index}`}
             className="track-card"
             aria-labelledby={`track-${index}-title`}
           >

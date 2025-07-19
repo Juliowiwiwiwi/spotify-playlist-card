@@ -1,5 +1,4 @@
 /* ===== Core Mobile Fixes ===== */
-/* Prevents white flash on overscroll */
 html, body, #root {
   margin: 0;
   padding: 0;
@@ -12,14 +11,18 @@ html, body, #root {
 
 /* ===== App Container ===== */
 .app-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  /* REMOVED: max-width: 1200px; */ /* If you don't want overall app centering */
+  /* REMOVED: margin: 0 auto; */   /* If you don't want overall app centering */
+  padding: 20px; /* Keep padding for general content */
   background-color: #121212; /* Ensures dark background */
   color: white; /* Default text color */
 }
 
 /* ===== Navigation ===== */
+/* This `nav` selector might be problematic if it applies to all navs.
+   If your main App.js `nav` is the only one, consider keeping it,
+   otherwise, be careful with global `nav` rules.
+   However, the `Home.css` `display: none !important` is the bigger issue. */
 .nav-link {
   margin-right: 15px;
   text-decoration: none;
@@ -79,7 +82,7 @@ html, body, #root {
 @media (max-width: 768px) {
   /* Lock viewport to prevent overscroll */
   body {
-    position: fixed;
+    position: fixed; /* Be careful with fixed body, can hide content below fold */
     width: 100%;
     overflow-x: hidden;
   }
