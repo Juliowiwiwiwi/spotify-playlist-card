@@ -14,7 +14,7 @@ const Playlists = () => {
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const response = await fetch('https://spotify-backend-w6y3.onrender.com/playlists');
+        const response = await fetch('https://spotify-backend-w6y3.onrender.com/playlists/');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
