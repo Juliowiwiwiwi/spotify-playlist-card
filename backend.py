@@ -51,7 +51,7 @@ def get_encoded_credentials():
     creds = f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}"
     return base64.b64encode(creds.encode()).decode()
 
-@app.route("/playlists", methods=["GET"])
+@app.route("/playlists/", methods=["GET"])
 def get_my_playlists():
     """Endpoint to fetch your public playlists"""
     token = get_spotify_token()
@@ -115,7 +115,7 @@ def get_my_playlists():
 
 
 
-@app.route('/playlists/<playlist_id>/tracks')
+@app.route('/playlists/<playlist_id>/tracks/')
 def get_playlist_tracks(playlist_id):
     token = get_spotify_token()
     if not token:
