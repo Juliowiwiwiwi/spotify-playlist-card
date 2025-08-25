@@ -9,7 +9,7 @@ import html
 load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={
-    r"/playlists": {
+    r"/playlists/": {
         "origins": [
             "http://localhost:3000",
             "https://spotify-playlist-cards.netlify.app/"
