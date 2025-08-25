@@ -12,7 +12,7 @@ CORS(app, resources={
     r"/playlists": {
         "origins": [
             "http://localhost:3000",
-            "https://friendly-smakager-6bcecc.netlify.app"
+            "https://spotify-playlist-cards.netlify.app/"
         ],
         "methods": ["GET", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"] # Explicitly allow these
@@ -20,7 +20,7 @@ CORS(app, resources={
     r"/playlists/*": { # This should cover /playlists/<playlist_id>/tracks
         "origins": [
             "http://localhost:3000",
-            "https://friendly-smakager-6bcecc.netlify.app"
+            "https://spotify-playlist-cards.netlify.app/"
         ],
         "methods": ["GET", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"] # Explicitly allow these
@@ -155,7 +155,6 @@ def get_playlist_tracks(playlist_id):
         
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
 
 
 if __name__ == "__main__":
