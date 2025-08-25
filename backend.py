@@ -17,7 +17,7 @@ CORS(app, resources={
         "methods": ["GET", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"] # Explicitly allow these
     },
-    r"/playlists/*": { # This should cover /playlists/<playlist_id>/tracks
+    r"/playlists/.*/tracks/": { # This should cover /playlists/<playlist_id>/tracks
         "origins": [
             "http://localhost:3000",
             "https://spotify-playlist-cards.netlify.app/"
