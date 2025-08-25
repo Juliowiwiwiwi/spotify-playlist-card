@@ -22,7 +22,7 @@ const Playlists = () => {
         
         const processedData = data.map(playlist => ({
           ...playlist,
-          spotify_url: playlist.spotify_url || `https://open.spotify.com/playlist/${playlist.id}`
+          spotify_url: playlist.spotify_url || `https://open.spotify.com/playlist/${playlist.id}/`
         }));
         
         setPlaylists(processedData);
