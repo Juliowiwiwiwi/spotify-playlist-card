@@ -14,7 +14,7 @@ const Playlists = () => {
   useEffect(() => {
     const fetchPlaylists = async () => {
       try {
-        const response = await fetch('https://spotify-backend-w6y3.onrender.com/playlists/');
+        const response = await fetch('https://spotify-backend-w6y3.onrender.com/playlists');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -22,7 +22,7 @@ const Playlists = () => {
         
         const processedData = data.map(playlist => ({
           ...playlist,
-          spotify_url: playlist.spotify_url || `https://open.spotify.com/playlist/${playlist.id}/`
+          spotify_url: playlist.spotify_url || `https://open.spotify.com/playlist/${playlist.id}`
         }));
         
         setPlaylists(processedData);

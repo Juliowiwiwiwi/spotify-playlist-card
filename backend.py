@@ -9,18 +9,18 @@ import html
 load_dotenv()
 app = Flask(__name__)
 CORS(app, resources={
-    r"/playlists/": {
+    r"/playlists": {
         "origins": [
             "http://localhost:3000",
-            "https://spotify-playlist-cards.netlify.app/"
+            "https://friendly-smakager-6bcecc.netlify.app"
         ],
         "methods": ["GET", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"] # Explicitly allow these
     },
-    r"/playlists/.*/tracks/": { # This should cover /playlists/<playlist_id>/tracks
+    r"/playlists/*": { # This should cover /playlists/<playlist_id>/tracks
         "origins": [
             "http://localhost:3000",
-            "https://spotify-playlist-cards.netlify.app/"
+            "https://friendly-smakager-6bcecc.netlify.app"
         ],
         "methods": ["GET", "OPTIONS"],
         "allow_headers": ["Content-Type", "Authorization"] # Explicitly allow these
@@ -51,7 +51,7 @@ def get_encoded_credentials():
     creds = f"{SPOTIFY_CLIENT_ID}:{SPOTIFY_CLIENT_SECRET}"
     return base64.b64encode(creds.encode()).decode()
 
-@app.route("/playlists/", methods=["GET"])
+@app.route("/playlists", methods=["GET"])
 def get_my_playlists():
     """Endpoint to fetch your public playlists"""
     token = get_spotify_token()
@@ -115,7 +115,7 @@ def get_my_playlists():
 
 
 
-@app.route('/playlists/<playlist_id>/tracks/')
+@app.route('/playlists/<playlist_id>/tracks')
 def get_playlist_tracks(playlist_id):
     token = get_spotify_token()
     if not token:
@@ -155,6 +155,7 @@ def get_playlist_tracks(playlist_id):
         
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
 
 
 if __name__ == "__main__":
